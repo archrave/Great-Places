@@ -28,13 +28,12 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             Text(
               'You have pushed the button this many times:',
             ),
             Text(
               'counter',
-              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
