@@ -16,8 +16,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Great Places',
         theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          accentColor: Colors.amber,
+          // primarySwatch: Colors.indigo,
+          primaryColor: Color(0xFF6DD47E),
+          accentColor: Color(0xFF293250),
         ),
         debugShowCheckedModeBanner: false,
         home: PlacesScreen(),

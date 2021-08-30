@@ -9,16 +9,16 @@ class PlacesScreen extends StatelessWidget {
         title: Text('Great Places'),
         actions: [
           IconButton(
+            icon: Icon(Icons.add),
             onPressed: () {
               Navigator.of(context).pushNamed(AddPlaceScreen.routeName);
             },
-            icon: Icon(Icons.add),
           ),
         ],
       ),
       body: Container(
         child: Center(
-          child: Text('Hi guys'),
+          child: Text('Hi guys, no great places available for now!'),
         ),
       ),
     );

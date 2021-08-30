@@ -16,6 +16,10 @@ class _ImageInputState extends State<ImageInput> {
       source: ImageSource.camera,
       maxWidth: 600,
     );
+    setState(() {
+      // Wrapping imageFile with FIle( ) constructor to convert that into a sdart File object
+      _storedImage = File(imageFile.path);
+    });
   }
 
   @override
