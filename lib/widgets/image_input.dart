@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart' as syspaths;
 
 class ImageInput extends StatefulWidget {
   @override
@@ -16,10 +18,17 @@ class _ImageInputState extends State<ImageInput> {
       source: ImageSource.camera,
       maxWidth: 600,
     );
+    File realImageFile = File(imageFile.path);
+
     setState(() {
-      // Wrapping imageFile with FIle( ) constructor to convert that into a sdart File object
+      // Wrapping imageFile with File() constructor to convert that into a sdart File object
       _storedImage = File(imageFile.path);
     });
+
+    // spelled  'syspaths' in the course flutter version
+    final appDir = await syspaths.getApplicationDocumentsDirectory();
+    final fileName = path.basename(realImageFile.path);
+    final savedImage = await realImageFile.copy('${appDir.path}/$fileName');
   }
 
   @override
