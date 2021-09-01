@@ -5,12 +5,16 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths;
 
 class ImageInput extends StatefulWidget {
+  final Function onSelectImage;
+  ImageInput(this.onSelectImage);
+
   @override
   _ImageInputState createState() => _ImageInputState();
 }
 
 class _ImageInputState extends State<ImageInput> {
   File _storedImage;
+
   Future<void> _takePicture() async {
     // Formerly we just had to call pickImage
     final picker = ImagePicker();
@@ -18,17 +22,23 @@ class _ImageInputState extends State<ImageInput> {
       source: ImageSource.camera,
       maxWidth: 600,
     );
+    // Handling an error which occurs when the user presses back button without taking a picture()
+    if (imageFile == null) {
+      return;
+    }
     File realImageFile = File(imageFile.path);
-
     setState(() {
       // Wrapping imageFile with File() constructor to convert that into a sdart File object
       _storedImage = File(imageFile.path);
     });
 
-    // spelled  'syspaths' in the course flutter version
     final appDir = await syspaths.getApplicationDocumentsDirectory();
-    final fileName = path.basename(realImageFile.path);
-    final savedImage = await realImageFile.copy('${appDir.path}/$fileName');
+    final fileName = path.basename(imageFile.path);
+    final savedImage =
+        await File(imageFile.path).copy('${appDir.path}/$fileName');
+
+    // Running this onSelectImage function present in the add_place_screen.dart and forward the image we just saved on the hard drive
+    widget.onSelectImage(savedImage);
   }
 
   @override
