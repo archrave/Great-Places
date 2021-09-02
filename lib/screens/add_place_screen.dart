@@ -36,7 +36,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('UserInputs...'),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
@@ -58,13 +57,18 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 ),
               ),
             ),
-            RaisedButton.icon(
-              icon: Icon(Icons.add),
-              label: Text('Add Place'),
-              elevation: 0,
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              color: Theme.of(context).accentColor,
-              onPressed: _savePlace,
+            // Added this to increase button height on my android
+            Container(
+              height: 60,
+              child: RaisedButton.icon(
+                icon: Icon(Icons.add),
+                label: Text('Add Place'),
+                elevation: 0,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                color: Theme.of(context).accentColor,
+                textColor: Colors.white,
+                onPressed: _savePlace,
+              ),
             ),
           ]),
     );
